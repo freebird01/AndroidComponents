@@ -68,6 +68,10 @@ fun Components(name: String, modifier: Modifier = Modifier) {
         mutableStateOf(Color.Black)
     }
 
+    val myButtonStatus = remember {
+        mutableStateOf(true)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -89,11 +93,21 @@ fun Components(name: String, modifier: Modifier = Modifier) {
 
         Button(
             onClick = {
-                myBackgroundColor.value = Color.Black
-                myButtonText.value = "Magic Done"
-                myButtonTextColor.value = Color.Red
-                myText.value = "Hey There :)"
-                myTextColor.value = Color.White
+                if (myButtonStatus.value) {
+                    myBackgroundColor.value = Color.Black
+                    myButtonText.value = "Magic Done"
+                    myButtonTextColor.value = Color.Red
+                    myText.value = "Hey There :)"
+                    myTextColor.value = Color.White
+                }
+                else {
+                    myBackgroundColor.value = Color.Red
+                    myButtonText.value = "Do Your Magic"
+                    myButtonTextColor.value = Color.White
+                    myText.value = "Hello Android!"
+                    myTextColor.value = Color.Black
+                }
+                myButtonStatus.value = !myButtonStatus.value
             },
             modifier = Modifier.size(250.dp, 60.dp),
             colors = ButtonDefaults.buttonColors(myBackgroundColor.value),
