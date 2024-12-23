@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -58,6 +59,15 @@ fun Components(name: String, modifier: Modifier = Modifier) {
     val myButtonTextColor = remember {
         mutableStateOf(Color.White)
     }
+
+    val myText = remember {
+        mutableStateOf("Hello Android!")
+    }
+
+    val myTextColor = remember {
+        mutableStateOf(Color.Black)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,11 +75,25 @@ fun Components(name: String, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Text(
+            text = myText.value,
+            color = myTextColor.value,
+            fontSize = 24.sp,
+            modifier = Modifier
+                .background(color = Color.Red, shape = RoundedCornerShape(10.dp))
+                .padding(10.dp)
+        )
+
+        Spacer(modifier = Modifier.size(20.dp))
+
         Button(
             onClick = {
                 myBackgroundColor.value = Color.Black
                 myButtonText.value = "Magic Done"
                 myButtonTextColor.value = Color.Red
+                myText.value = "Hey There :)"
+                myTextColor.value = Color.White
             },
             modifier = Modifier.size(250.dp, 60.dp),
             colors = ButtonDefaults.buttonColors(myBackgroundColor.value),
