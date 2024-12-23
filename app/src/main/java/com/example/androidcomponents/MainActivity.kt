@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -72,6 +73,10 @@ fun Components(name: String, modifier: Modifier = Modifier) {
         mutableStateOf(true)
     }
 
+    val valueOnTextField = remember {
+        mutableStateOf("")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -121,6 +126,15 @@ fun Components(name: String, modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center
             )
         }
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+        TextField(
+            value = valueOnTextField.value,
+            onValueChange = {
+                valueOnTextField.value = it
+            }
+        )
     }
 }
 
