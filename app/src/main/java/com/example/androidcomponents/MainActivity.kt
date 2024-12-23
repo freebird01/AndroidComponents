@@ -79,15 +79,16 @@ fun Components(name: String, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-        Text(
-            text = myText.value,
-            color = myTextColor.value,
-            fontSize = 24.sp,
-            modifier = Modifier
-                .background(color = Color.Red, shape = RoundedCornerShape(10.dp))
-                .padding(10.dp)
-        )
+        if (myButtonStatus.value) {
+            Text(
+                text = myText.value,
+                color = myTextColor.value,
+                fontSize = 24.sp,
+                modifier = Modifier
+                    .background(color = Color.Red, shape = RoundedCornerShape(10.dp))
+                    .padding(10.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.size(20.dp))
 
@@ -99,8 +100,7 @@ fun Components(name: String, modifier: Modifier = Modifier) {
                     myButtonTextColor.value = Color.Red
                     myText.value = "Hey There :)"
                     myTextColor.value = Color.White
-                }
-                else {
+                } else {
                     myBackgroundColor.value = Color.Red
                     myButtonText.value = "Do Your Magic"
                     myButtonTextColor.value = Color.White
