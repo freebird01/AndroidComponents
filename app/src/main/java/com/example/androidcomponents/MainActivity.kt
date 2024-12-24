@@ -24,6 +24,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -91,6 +92,10 @@ fun Components(name: String, modifier: Modifier = Modifier) {
         mutableStateOf("Result: ")
     }
 
+    val myImage = remember {
+        mutableIntStateOf(R.drawable.image_1)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -100,7 +105,7 @@ fun Components(name: String, modifier: Modifier = Modifier) {
     ) {
 
         Image(
-            painter = painterResource(R.drawable.image_1),
+            painter = painterResource(myImage.value),
             contentDescription = "",
             modifier = Modifier.size(300.dp),
             contentScale = ContentScale.Fit
@@ -130,12 +135,14 @@ fun Components(name: String, modifier: Modifier = Modifier) {
                     myButtonTextColor.value = Color.Red
                     myText.value = "Hey There :)"
                     myTextColor.value = Color.White
+                    myImage.value = R.drawable.image_2
                 } else {
                     myBackgroundColor.value = Color.Red
                     myButtonText.value = "Do Your Magic"
                     myButtonTextColor.value = Color.White
                     myText.value = "Hello Android!"
                     myTextColor.value = Color.Black
+                    myImage.value = R.drawable.image_1
                 }
                 myButtonStatus.value = !myButtonStatus.value
                 userInput.value = valueOnTextField.value
